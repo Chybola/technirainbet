@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="shade" cx="40%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#444" />
+      <stop offset="70%" stop-color="#111" />
+      <stop offset="100%" stop-color="#000" />
+    </radialGradient>
+    <linearGradient id="metal" x1="0" x2="1">
+      <stop offset="0%" stop-color="#333" />
+      <stop offset="50%" stop-color="#1a1a1a" />
+      <stop offset="100%" stop-color="#222" />
+    </linearGradient>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" stitchTiles="stitch" result="noise" />
+      <feColorMatrix type="saturate" values="0" />
+      <feBlend in="SourceGraphic" in2="noise" mode="overlay" opacity="0.08" />
+    </filter>
+  </defs>
+  <!-- body -->
+  <g transform="translate(100,100)">
+    <circle cx="0" cy="30" r="60" fill="url(#shade)" stroke="#111" stroke-width="4" />
+    <!-- cap -->
+    <rect x="-36" y="-10" width="72" height="28" rx="6" fill="url(#metal)" />
+    <!-- rivets -->
+    <circle cx="-16" cy="0" r="4" fill="#666" />
+    <circle cx="0" cy="0" r="4" fill="#666" />
+    <circle cx="16" cy="0" r="4" fill="#666" />
+    <!-- fuse -->
+    <path d="M30 -6 C58 -28, 88 -36, 110 -60" stroke="#c85f12" stroke-width="8" stroke-linecap="round" fill="none" />
+    <circle cx="110" cy="-60" r="10" fill="#ffd54f" stroke="#ffb74d" stroke-width="3" />
+    <!-- subtle texture -->
+    <g filter="url(#noise)" opacity="0.9">
+      <circle cx="0" cy="30" r="60" fill="none" />
+    </g>
+  </g>
+</svg>

@@ -1,1 +1,1 @@
-# technirainbet
+#projekt technikasyno zrobiony przezemnie

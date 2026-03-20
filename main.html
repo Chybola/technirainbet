@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mines — Technirainbet</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .main-wrap {
+        padding: 1.5rem 0;
+      }
+      .mine-cell {
+        width: 56px;
+        height: 56px;
+      }
+      .mine-cell img.diamond {
+        width: 80%;
+        height: 80%;
+      }
+      .panel {
+        max-width: 320px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <h1>Technirainbet — Mines</h1>
+        </div>
+        <div class="balance-bar" role="region" aria-label="Kasa">
+          <span class="balance-label">Kasa:</span>
+          <span class="balance-amount" data-currency="PLN">0</span>
+          <button class="btn btn-small btn-topup" data-amount="100">
+            +100
+          </button>
+          <button class="btn btn-small btn-topup" data-amount="500">
+            +500
+          </button>
+          <button class="btn btn-small btn-reset">Reset</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container main-wrap">
+      <h2>Mines (Saper)</h2>
+      <p class="muted">Przegraj całą swoją kase z nami</p>
+
+      <div class="game-page">
+        <div
+          class="game-area"
+          style="
+            min-height: 420px;
+            padding: 1rem;
+            background: var(--card);
+            border-radius: 8px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              gap: 1rem;
+              flex-wrap: wrap;
+              align-items: flex-start;
+            "
+          >
+            <div style="flex: 1 1 360px">
+              <div style="font-weight: 600; margin-bottom: 0.6rem">Plansza</div>
+              <div
+                id="mines-board"
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(6, 56px);
+                  gap: 8px;
+                "
+              ></div>
+            </div>
+
+            <aside class="panel" style="flex: 0 0 320px">
+              <div style="font-weight: 600; margin-bottom: 0.6rem">Panel</div>
+              <p class="muted">
+                Ustaw zakład, kliknij pole aby rozegrać. Reset planszy zwraca
+                stawkę jeśli runda była aktywna.
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.6rem">
+                <button class="btn btn-small" id="start-mines">Start</button>
+                <button class="btn btn-small btn-clear-all">
+                  Reset planszy
+                </button>
+              </div>
+
+              <div style="margin-top: 0.8rem">
+                <label
+                  for="bet-amount"
+                  style="
+                    display: block;
+                    font-weight: 600;
+                    margin-bottom: 0.25rem;
+                  "
+                  >Zakład</label
+                >
+                <div style="display: flex; gap: 0.5rem; align-items: center">
+                  <input
+                    id="bet-amount"
+                    type="number"
+                    min="1"
+                    step="1"
+                    value="10"
+                    style="width: 100px"
+                  />
+                  <button class="btn btn-small" id="place-bet">Postaw</button>
+                  <button
+                    class="btn btn-small"
+                    id="all-in"
+                    style="background: #ff7043"
+                  >
+                    All-in
+                  </button>
+                  <button
+                    class="btn btn-small"
+                    id="cash-out"
+                    style="background: #2ecc71"
+                  >
+                    Wypłać
+                  </button>
+                </div>
+                <div
+                  style="margin-top: 0.5rem; font-size: 0.95rem"
+                  class="muted"
+                >
+                  Wypłata teraz: <strong id="payout-now">-</strong>
+                  <br />
+                  Wypłata po kolejnym kliknięciu:
+                  <strong id="payout-next">-</strong>
+                </div>
+                <div
+                  id="mine-msg"
+                  style="margin-top: 0.5rem; min-height: 1.2em"
+                ></div>
+              </div>
+
+              <div style="margin-top: 0.6rem">
+                Twoje saldo: <strong class="balance-amount">0</strong> zł
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <small>Technirainbet — Mines demo</small>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
