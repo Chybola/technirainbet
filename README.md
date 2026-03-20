@@ -1,1 +1,1 @@
-#projekt technikasyno zrobiony przezemnie
+projekt technikasyno zrobiony przezemnie
