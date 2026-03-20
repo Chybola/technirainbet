@@ -82,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
       c.innerHTML = "";
     });
     if (zakladPostawiony && aktualnyZaklad > 0) {
-      // refund previous stake back to balance
       zmienSaldo(aktualnyZaklad);
     }
     aktualnyZaklad = 0;
@@ -181,8 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   zbudujPlansze();
 
-  const przyciskStart = document.getElementById("start-mines");
-  const przyciskResetPlanszy = document.querySelector(".btn-clear-all");
+  // Start and reset buttons removed from UI
   const przyciskPostaw = document.getElementById("place-bet");
   const poleZakladu = document.getElementById("bet-amount");
   const komunikatEl = document.getElementById("mine-msg");
@@ -299,8 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   poleZakladu?.addEventListener("input", () => aktualizujWyswietlanieSzans());
-  przyciskStart?.addEventListener("click", () => zresetujPlansze());
-  przyciskResetPlanszy?.addEventListener("click", () => zresetujPlansze());
 
   zresetujPlansze();
   aktualizujWyswietlanieSzans();
