@@ -44,11 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// expose only Polish API on the global object
 window.trb = {
-  getBalance: pobierzSaldo,
-  setBalance: ustawSaldo,
-  changeBalance: zmienSaldo,
-  updateBalanceDisplays: aktualizujWidokiSalda,
   pobierzSaldo,
   ustawSaldo,
   zmienSaldo,
@@ -85,9 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
       c.innerHTML = "";
     });
     if (zakladPostawiony && aktualnyZaklad > 0) {
-      if (window.trb && typeof window.trb.changeBalance === "function") {
-        window.trb.changeBalance(aktualnyZaklad);
-      }
+      // refund previous stake back to balance
+      zmienSaldo(aktualnyZaklad);
     }
     aktualnyZaklad = 0;
     zakladPostawiony = false;
@@ -238,14 +234,12 @@ document.addEventListener("DOMContentLoaded", () => {
       komunikatEl.textContent = "Podaj poprawną kwotę zakładu.";
       return;
     }
-    const bal =
-      window.trb && window.trb.getBalance ? window.trb.getBalance() : 0;
+    const bal = pobierzSaldo();
     if (amt > bal) {
       komunikatEl.textContent = "Brak wystarczających środków.";
       return;
     }
-    if (window.trb && typeof window.trb.changeBalance === "function")
-      window.trb.changeBalance(-amt);
+    zmienSaldo(-amt);
     aktualnyZaklad = amt;
     zakladPostawiony = true;
     bezpieczneKlikniecia = 0;
@@ -267,12 +261,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const mult = mnoznikWyplatyDlaK(bezpieczneKlikniecia);
     const wyplata = aktualnyZaklad * mult;
-    if (
-      wplataIsValid(wyplata) &&
-      window.trb &&
-      typeof window.trb.changeBalance === "function"
-    ) {
-      window.trb.changeBalance(wyplata);
+    if (wplataIsValid(wyplata)) {
+      zmienSaldo(wyplata);
     }
     const nieodkryte = pola.filter((cc) => cc.dataset.revealed !== "true");
     if (nieodkryte.length > 0) {
@@ -294,8 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const przyciskAllIn = document.getElementById("all-in");
   przyciskAllIn?.addEventListener("click", () => {
-    const bal =
-      window.trb && window.trb.getBalance ? window.trb.getBalance() : 0;
+    const bal = pobierzSaldo();
     if (!bal || bal <= 0) {
       komunikatEl.textContent = "Brak środków do ustawienia All-in.";
       return;
