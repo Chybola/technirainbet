@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-// expose only Polish API on the global object
 window.trb = {
   pobierzSaldo,
   ustawSaldo,
@@ -179,8 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   zbudujPlansze();
-
-  // Start and reset buttons removed from UI
   const przyciskPostaw = document.getElementById("place-bet");
   const poleZakladu = document.getElementById("bet-amount");
   const komunikatEl = document.getElementById("mine-msg");
